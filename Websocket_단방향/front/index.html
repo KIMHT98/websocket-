@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Websocket실습</title>
+    <script>
+      const ws = new WebSocket(
+        "ws://localhost:8001"
+      );
+      function sendMsg() {
+        const input = document.getElementById(
+          "messageInput"
+        );
+        const msg = input.value;
+        ws.send(msg);
+        input.value = "";
+      }
+      function handleKeyDown(event) {
+        if (event.key === "Enter") {
+          sendMsg();
+        }
+      }
+
+      window.onload = function () {
+        const input = document.getElementById(
+          "messageInput"
+        );
+        input.addEventListener(
+          "keydown",
+          handleKeyDown
+        );
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Websocket 실습 과제</h1>
+    <input
+      type="text"
+      id="messageInput"
+      placeholder="메시지를 입력하세요"
+    />
+    <button onclick="sendMsg()">전송</button>
+  </body>
+</html>
